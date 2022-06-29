@@ -1,8 +1,9 @@
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 
-import styles from './tailwind.css'
+import tailwindStyles from './tailwind.css'
 import { Navbar } from '~/components/navbar'
+import { ThemeProvider, useTheme } from '~/utiles/theme-provider'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -10,16 +11,17 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1'
 })
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: tailwindStyles }]
 
-export default function App() {
+function App() {
+  const [theme] = useTheme()
   return (
-    <html lang="en">
+    <html lang="en" className={theme || ''}>
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={'bg-white dark:bg-gray-900'}>
         <Navbar />
         <Outlet />
         <ScrollRestoration />
@@ -27,5 +29,13 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  )
+}
+
+export default function AppWithProviders() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   )
 }
