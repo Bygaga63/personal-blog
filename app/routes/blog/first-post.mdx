@@ -3,8 +3,8 @@ title: My first about post about... making my first post!
 date: 2021-12-14
 description: cool!
 meta:
-    title: My First Post
-    description: Isn't this just awesome?
+  title: My First Post
+  description: Isn't this just awesome?
 ---
 
 ## My first about post about... making my first post!
@@ -22,7 +22,7 @@ The only thing I really needed to setup was some syntax highlighting, e.g. you s
 
 ```js
 function helloWorld() {
-  return 'hello!';
+  return 'hello!'
 }
 ```
 
@@ -33,13 +33,13 @@ module.exports = {
   // ... existing config here
   mdx: async (filename) => {
     const [rehypeHighlight] = await Promise.all([
-      import('rehype-highlight').then((mod) => mod.default),
-    ]);
+      import('rehype-highlight').then((mod) => mod.default)
+    ])
     return {
-      rehypePlugins: [rehypeHighlight],
-    };
-  },
-};
+      rehypePlugins: [rehypeHighlight]
+    }
+  }
+}
 ```
 
 Notice that we are using `rehype-highlight` as a plugin which ultimately will use `highlight.js` behind the scenes to transform our html.
@@ -88,25 +88,22 @@ Now that we have that structure in place, the only thing left to do is setup up 
 In addition to that Remix seems to optimize what CSS is sent _per page_. Meaning to enable our syntax highlighting we'd have to include the styles in each page. That seems overkill, so instead we're going to load it inside our `blog.tsx` (which again remember wraps the underlying nested children) so that we only define it once across all blog posts.
 
 ```ts
-import styles from 'highlight.js/styles/github-dark-dimmed.css'; // change this to your desired theme
-import type { LinksFunction, LoaderFunction } from 'remix';
-import { MetaFunction, Outlet } from "remix";
+import styles from 'highlight.js/styles/github-dark-dimmed.css' // change this to your desired theme
+import type { LinksFunction, LoaderFunction } from 'remix'
+import { MetaFunction, Outlet } from 'remix'
 
 export const links: LinksFunction = () => {
   return [
     {
       rel: 'stylesheet',
-      href: styles,
-    },
-  ];
+      href: styles
+    }
+  ]
 }
 
 export default function Blog() {
-  return (
-    <Outlet />
-  );
+  return <Outlet />
 }
-
 ```
 
 Now if you're able to see all of the above code blocks with proper highlighting then I must've done it right!

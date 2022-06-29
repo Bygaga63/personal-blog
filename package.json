@@ -8,7 +8,9 @@
     "dev": "run-p dev:*",
     "dev:css": "npm run generate:css -- --watch",
     "dev:remix": "remix dev",
-    "generate:css": "npx tailwindcss -o ./app/tailwind.css"
+    "generate:css": "npx tailwindcss -o ./app/tailwind.css",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|gql|graphql|mdx|vue)\""
   },
   "dependencies": {
     "@remix-run/node": "^1.6.2",
@@ -24,8 +26,13 @@
     "@tailwindcss/typography": "^0.5.2",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
-    "eslint": "^8.15.0",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.1.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
     "tailwindcss": "^3.1.4",
     "typescript": "^4.6.4"
   },
