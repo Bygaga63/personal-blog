@@ -1,8 +1,14 @@
+import { Link, NavLink } from '@remix-run/react'
 import { MoonIcon } from '~/components/icons/moon-icon'
 import { SunIcon } from '~/components/icons/sun-icon'
 import { Theme, useTheme } from '~/utiles/theme-provider'
 
 const iconTransformOrigin = { transformOrigin: '50% 100px' }
+
+const LINKS = [
+  { name: 'Blog', to: '/blog' },
+  { name: 'About', to: '/about' }
+]
 
 function DarkModeToggle() {
   const [, setTheme] = useTheme()
@@ -42,10 +48,24 @@ function DarkModeToggle() {
 
 export const Navbar = () => {
   return (
-    <div className="px-5 py-9 lg:py-12">
+    <div className="container mx-auto px-5 py-9 lg:py-12">
       <nav className="mx-auto max-w-8xl flex items-center justify-between">
-        <div>Mukhin Dmitry</div>
-        <div>Blog</div>
+        <div>
+          <Link
+            prefetch="intent"
+            to="/"
+            className="text-primary underlined focus:outline-none block whitespace-nowrap text-2xl font-medium transition">
+            <h1>Mukhin Dmitry</h1>
+          </Link>
+        </div>
+
+        <ul className="hidden lg:flex">
+          {LINKS.map((link) => (
+            <NavLink key={link.to} to={link.to}>
+              {link.name}
+            </NavLink>
+          ))}
+        </ul>
 
         <div className="flex items-center justify-center">
           <div className="noscript-hidden hidden lg:block">
