@@ -24,13 +24,6 @@ module.exports = {
       blueGray: {
         500: 'var(--color-blueGray-500)'
       },
-      team: {
-        unknown: 'var(--color-team-unknown)',
-        current: 'var(--color-team-current)',
-        yellow: 'var(--color-team-yellow)',
-        blue: 'var(--color-team-blue)',
-        red: 'var(--color-team-red)'
-      },
       yellow: {
         500: 'var(--color-yellow-500)',
         '500-inverted': 'var(--color-yellow-500-inverted)'

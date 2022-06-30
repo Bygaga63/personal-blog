@@ -1,12 +1,14 @@
-import { Link, NavLink } from '@remix-run/react'
+import { Link } from '@remix-run/react'
 import { MoonIcon } from '~/components/icons/moon-icon'
 import { SunIcon } from '~/components/icons/sun-icon'
 import { Theme, useTheme } from '~/utiles/theme-provider'
+import { AppNavLink } from '~/components/navbar/nav-link'
 
 const iconTransformOrigin = { transformOrigin: '50% 100px' }
 
 const LINKS = [
   { name: 'Blog', to: '/blog' },
+  { name: 'Skills', to: '/skills' },
   { name: 'About', to: '/about' }
 ]
 
@@ -36,12 +38,6 @@ function DarkModeToggle() {
           <SunIcon />
         </span>
       </div>
-      {/*<span*/}
-      {/*  className={clsx('ml-4 text-black dark:text-white', {*/}
-      {/*    'sr-only': variant === 'icon'*/}
-      {/*  })}>*/}
-      {/*  <Themed dark="switch to light mode" light="switch to dark mode" />*/}
-      {/*</span>*/}
     </button>
   )
 }
@@ -59,16 +55,16 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <ul className="hidden lg:flex">
+        <ul className="hidden md:flex">
           {LINKS.map((link) => (
-            <NavLink key={link.to} to={link.to}>
+            <AppNavLink key={link.to} to={link.to}>
               {link.name}
-            </NavLink>
+            </AppNavLink>
           ))}
         </ul>
 
         <div className="flex items-center justify-center">
-          <div className="noscript-hidden hidden lg:block">
+          <div className="noscript-hidden hidden md:block">
             <DarkModeToggle />
           </div>
         </div>
